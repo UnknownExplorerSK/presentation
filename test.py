@@ -9,14 +9,9 @@ pr1 = Presentation()
 
 var = input("How many slides? ")
 i = int(var)
-# i = 5
 x = 0
-
 var2 = input("The title of the presentation? ")
-
 var3 = input("Who is making the presentation? ")
-
-
 i = i - 1
 
 while i > 0:
