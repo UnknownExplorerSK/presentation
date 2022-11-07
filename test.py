@@ -34,6 +34,16 @@ while i > 0:
     subtitle1.text = str(var3)
     x = x+1
 
+  while x==1:
+    i -= 1
+    slide_number_register = pr1.slide_layouts[1]
+    slide_number = pr1.slides.add_slide(slide_number_register)
+
+    title_number = slide_number.shapes.title
+    title_number.text = ("What is "+ str(var2.lower()) + "?")
+
+    x = x+1
+
   else:
     slide_number_register = pr1.slide_layouts[1]
     slide_number = pr1.slides.add_slide(slide_number_register)
