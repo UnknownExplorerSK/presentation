@@ -79,14 +79,12 @@ while i > 0:
      size="256x256")
     image_url = response2['data'][0]['url']
     print(image_url)
-    time.sleep(2)
+    time.sleep(5)
 
-    response2 = requests.get(image_url)
-    if response.status_code:
-        fp = open('dall_e_generated_image.png', 'wb')
-        fp.write(response2.content)
-        fp.close()
-    time.sleep(2)
+    img_data = requests.get(image_url).content
+    with open('dall_e_generated_image.png', 'wb') as handler:
+        handler.write(img_data)
+    time.sleep(5)
 
     img1 = "dall_e_generated_image.png"
 
