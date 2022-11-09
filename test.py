@@ -31,7 +31,7 @@ while i > 0:
     title_number.text = str(var2)
 
     subtitle1 = slide_number.placeholders[1]
-    subtitle1.text = str(var3)
+    subtitle1.text = ("Made by " + str(var3))
     x = x+1
 
   while x==1:
@@ -55,17 +55,37 @@ while i > 0:
     title_number.text = var
     x = x+1
 
-    while i == 0:
-      slide_number_register = pr1.slide_layouts[0]
-      slide_number = pr1.slides.add_slide(slide_number_register)
+  while i == 2:
+    i -= 1
+    slide_number_register = pr1.slide_layouts[1]
+    slide_number = pr1.slides.add_slide(slide_number_register)
 
-      title_number = slide_number.shapes.title
-      title_number.text = "Are there any questions?"
+    title_number = slide_number.shapes.title
+    title_number.text = (str(var2) + " in the future")
 
-      subtitle1 = slide_number.placeholders[1]
-      subtitle1.text = "Have a wonderful day!"
-      x = x+1
-      i -= 1
+    x = x+1
+    
+  while i == 1:
+    i -= 1
+    slide_number_register = pr1.slide_layouts[1]
+    slide_number = pr1.slides.add_slide(slide_number_register)
+
+    title_number = slide_number.shapes.title
+    title_number.text = "Used sources"
+
+    x = x+1
+
+  while i == 0:
+    slide_number_register = pr1.slide_layouts[0]
+    slide_number = pr1.slides.add_slide(slide_number_register)
+
+    title_number = slide_number.shapes.title
+    title_number.text = "Are there any questions?"
+
+    subtitle1 = slide_number.placeholders[1]
+    subtitle1.text = "Have a wonderful day!"
+    x = x+1
+    i -= 1
   
 else:
   pr1.save("Testing.pptx")
