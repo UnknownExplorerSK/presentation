@@ -3,9 +3,18 @@ import collections.abc
 from pptx import Presentation
 from pptx.util import Inches
 from PIL import Image
+import openai
+import time
+import os
+import requests
+import shutil
+import urllib
 
 pr1 = Presentation()
 #number of slides
+
+var = input("Please enter your api key: ")
+openai.api_key = var
 
 var = input("How many slides? ")
 i = int(var)
@@ -13,6 +22,8 @@ x = 0
 var2 = input("The title of the presentation? ")
 var3 = input("Who is making the presentation? ")
 i = i - 1
+
+# prompt2 = str(var)
 
 while i > 0:
   i -= 1
@@ -49,10 +60,41 @@ while i > 0:
     slide_number = pr1.slides.add_slide(slide_number_register)
 
     title_number = slide_number.shapes.title
-    input1_question = "Please enter the title of the "
-    input1_ending = "slide"
     var = input('Title of slide number ' + str(x+1) + ':')
     title_number.text = var
+
+    prompt1 = str(var)
+    response = openai.Completion.create(
+     engine="text-davinci-001", 
+     prompt=prompt1, 
+     max_tokens=12)
+    
+    subtitle1 = slide_number.placeholders[1]
+    subtitle1.text = str(response.choices[0].text)
+    time.sleep(2)
+
+    response2 = openai.Image.create(
+     prompt=prompt1,
+     n=1,
+     size="256x256")
+    image_url = response2['data'][0]['url']
+    print(image_url)
+    time.sleep(2)
+
+    response2 = requests.get(image_url)
+    if response.status_code:
+        fp = open('dall_e_generated_image.png', 'wb')
+        fp.write(response2.content)
+        fp.close()
+    time.sleep(2)
+
+    img1 = "dall_e_generated_image.png"
+
+    from_left = Inches(4)
+    from_top = Inches(4)
+    add_picture = slide_number.shapes.add_picture(img1,from_left,from_top)
+    time.sleep(2)
+
     x = x+1
 
   while i == 2:

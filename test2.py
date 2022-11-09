@@ -4,15 +4,18 @@ import time
 var = input("Please enter your api key: ")
 openai.api_key = var
 
-prompt1 = "Write a random greeting"
+# prompt1 = "Write a random greeting"
 
-response = openai.Completion.create(
-    engine="text-davinci-001", 
-    prompt=prompt1, 
-    max_tokens=6
-)
+completion = openai.Completion.create(engine="ada", prompt="Write a random greeting")
 
-print(response)
+# print the completion
+print(completion.choices[0].text)
+# response = openai.Completion.create(
+#      engine="text-davinci-001", 
+#      prompt=prompt1, 
+#      max_tokens=12)
+
+# print(response.choices[0].text)
 
 # prompt2 = str("Translate this into French ") + str(response)
 # print(prompt2)
